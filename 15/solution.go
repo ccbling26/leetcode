@@ -2,18 +2,12 @@ package _15
 
 import "sort"
 
-type IntSlice []int
-
-func (s IntSlice) Len() int           { return len(s) }
-func (s IntSlice) Less(i, j int) bool { return s[i] < s[j] }
-func (s IntSlice) Swap(i, j int)      { s[i], s[j] = s[j], s[i] }
-
 func threeSum(nums []int) [][]int {
 	n := len(nums)
 	if n < 3 {
 		return [][]int{}
 	}
-	sort.Sort(IntSlice(nums))
+	sort.Sort(sort.IntSlice(nums))
 	i := 0
 	res := [][]int{}
 	for i < n {
