@@ -49,7 +49,7 @@ func findCrossingTime(n int, k int, time [][]int) int {
 	remain := n
 	curTime := 0
 
-	for {
+	for remain > 0 || len(waitRight) != 0 || len(workRight) != 0 {
 		for len(workLeft) > 0 {
 			if workLeft[0].finishTime > curTime {
 				break
@@ -84,9 +84,6 @@ func findCrossingTime(n int, k int, time [][]int) int {
 			if nextTime != 1<<30 {
 				curTime = max(nextTime, curTime)
 			}
-		}
-		if remain == 0 && len(waitRight) == 0 && len(workRight) == 0 {
-			break
 		}
 	}
 	return curTime
