@@ -50,17 +50,11 @@ func findCrossingTime(n int, k int, time [][]int) int {
 	curTime := 0
 
 	for remain > 0 || len(waitRight) != 0 || len(workRight) != 0 {
-		for len(workLeft) > 0 {
-			if workLeft[0].finishTime > curTime {
-				break
-			}
+		for len(workLeft) > 0 && workLeft[0].finishTime <= curTime {
 			tmp := heap.Pop(&workLeft).(workItem)
 			heap.Push(&waitLeft, waitItem{time[tmp.idx][0] + time[tmp.idx][2], tmp.idx})
 		}
-		for len(workRight) > 0 {
-			if workRight[0].finishTime > curTime {
-				break
-			}
+		for len(workRight) > 0 && workRight[0].finishTime <= curTime {
 			tmp := heap.Pop(&workRight).(workItem)
 			heap.Push(&waitRight, waitItem{time[tmp.idx][0] + time[tmp.idx][2], tmp.idx})
 		}
