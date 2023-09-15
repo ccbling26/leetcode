@@ -5,8 +5,7 @@ class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
         n = len(nums)
 
-        def search(is_left: bool):
-            left, right = 0, n - 1
+        def search(left: int, right: int, is_left: bool):
             while left <= right:
                 mid = (right + left) // 2
                 if nums[mid] == target:
@@ -25,4 +24,8 @@ class Solution:
                 else:
                     left = mid + 1
             return -1
-        return [search(True), search(False)]
+        l = search(0, n - 1, True)
+        if l == -1:
+            return [-1, -1]
+        else:
+            return [l, search(l, n - 1, False)]
