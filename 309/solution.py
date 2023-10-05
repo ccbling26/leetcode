@@ -6,7 +6,8 @@ class Solution:
         n = len(prices)
         buy, sell1, sell2 = -prices[0], 0, 0
         for i in range(1, n):
-            buy = max(buy, sell1 - prices[i])
-            sell1 = sell2
-            sell2 = max(sell2, prices[i] + buy)
+            n_buy = max(buy, sell1 - prices[i])
+            n_sell1 = max(sell1, sell2)
+            n_sell2 = prices[i] + buy
+            buy, sell1, sell2 = n_buy, n_sell1, n_sell2
         return max(sell1, sell2)
